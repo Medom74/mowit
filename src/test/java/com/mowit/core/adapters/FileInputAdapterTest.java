@@ -2,6 +2,7 @@ package com.mowit.core.adapters;
 
 import com.mowit.core.adapters.input.FileInputAdapter;
 import com.mowit.core.domain.MowerService;
+import com.mowit.core.domain.MowerServiceImpl;
 import com.mowit.core.exception.InvalidFileFormatException;
 import com.mowit.core.exception.InvalidInstructionException;
 import com.mowit.core.exception.InvalidOrientationException;
@@ -37,7 +38,7 @@ public class FileInputAdapterTest {
 
     @BeforeEach
     void init() {
-        mowerServiceMock = new MowerService();
+        mowerServiceMock = new MowerServiceImpl();
         fileInputAdapterMock = new FileInputAdapter(mowerServiceMock);
     }
 
@@ -64,7 +65,7 @@ public class FileInputAdapterTest {
         assertThrows(exceptionClass, () -> fileInputAdapterMock.readInput(inputFile));
     }
 
-   private static Stream<Arguments> getFileNameAndExceptionClass() {
+    private static Stream<Arguments> getFileNameAndExceptionClass() {
         return Stream.of(
                 arguments(ERROR_SCENARIO_FILE_NAME, InvalidInstructionException.class),
                 arguments(INVALID_LAWN_SCENARIO_FILE_NAME, InvalidFileFormatException.class),
@@ -77,6 +78,7 @@ public class FileInputAdapterTest {
                 arguments(EMPTY_FILE_NAME, InvalidFileFormatException.class)
         );
     }
+
     private File getFile(String fileName) {
         return new File(getClass().getClassLoader().getResource(fileName).getFile());
     }

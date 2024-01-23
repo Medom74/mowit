@@ -5,6 +5,7 @@ import com.mowit.core.adapters.output.ConsoleOutputAdapter;
 import com.mowit.core.adapters.input.FileInputAdapter;
 import com.mowit.core.adapters.output.OutputPort;
 import com.mowit.core.domain.MowerService;
+import com.mowit.core.domain.MowerServiceImpl;
 import com.mowit.core.exception.InvalidFileFormatException;
 import com.mowit.core.exception.InvalidInstructionException;
 import com.mowit.core.exception.InvalidOrientationException;
@@ -30,7 +31,7 @@ public class MowItApp {
 
     public static void main(String[] args) {
         // Assemble the components
-        MowerService mowerService = new MowerService();
+        MowerService mowerService = new MowerServiceImpl();
         InputPort fileInputAdapter = new FileInputAdapter(mowerService);
         OutputPort consoleOutputAdapter = new ConsoleOutputAdapter();
         // Read the input file and initialize the lawn and mower

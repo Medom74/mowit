@@ -20,7 +20,7 @@ public class MowerServiceTest {
     @MethodSource("mowerAndInstructionAndUpdatedMower")
     void testMow(LawnMower mower, String instruction, LawnMower updatedMower) {
         Lawn lawn = new Lawn(new Coordinates(5, 5));
-        MowerService mowerService = new MowerService();
+        MowerService mowerService = new MowerServiceImpl();
         LawnMower result = mowerService.mow(lawn, mower, instruction);
         assertNotNull(result);
         assertEquals(updatedMower, result);
