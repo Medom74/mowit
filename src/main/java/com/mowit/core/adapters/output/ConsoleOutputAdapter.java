@@ -1,6 +1,9 @@
 package com.mowit.core.adapters.output;
 
 import com.mowit.core.model.LawnMower;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.List;
 
@@ -9,6 +12,8 @@ import java.util.List;
  */
 
 public class ConsoleOutputAdapter implements OutputPort {
+    private static final Logger logger = LoggerFactory.getLogger(ConsoleOutputAdapter.class);
+
     /**
      * Displays the final positions of lawnmowers on the console.
      *
@@ -17,7 +22,7 @@ public class ConsoleOutputAdapter implements OutputPort {
     @Override
     public void displayOutput(List<LawnMower> mowers) {
         if (!mowers.isEmpty()) {
-            mowers.forEach(mower -> System.out.print(mower.position() + " " + mower.orientation() + " "));
+            mowers.forEach(mower -> logger.info(mower.position() + " " + mower.orientation() + " "));
         }
     }
 }

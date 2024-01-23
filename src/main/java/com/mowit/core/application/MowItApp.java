@@ -11,12 +11,11 @@ import com.mowit.core.exception.InvalidInstructionException;
 import com.mowit.core.exception.InvalidOrientationException;
 import com.mowit.core.exception.InvalidPositionException;
 import com.mowit.core.model.LawnMower;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The main entry point for the application.
@@ -26,7 +25,7 @@ import java.util.logging.Logger;
  */
 
 public class MowItApp {
-    private static final Logger LOGGER = Logger.getLogger(MowItApp.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(MowItApp.class);
     private static final String FILE_PATH = "./src/main/resources/file.txt";
 
     public static void main(String[] args) {
@@ -44,7 +43,7 @@ public class MowItApp {
                  | InvalidInstructionException
                  | InvalidOrientationException
                  | InvalidPositionException e) {
-            LOGGER.log(Level.SEVERE, "Error occurred", e);
+            logger.error("Error occurred", e);
         }
     }
 }
